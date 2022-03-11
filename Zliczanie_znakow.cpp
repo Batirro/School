@@ -18,7 +18,7 @@ int main()
     zlicz(Licznik, tekst);
     max_znak(Licznik);
     wyswietl(Licznik);
-    cout << "Plik zostal zapisany." << endl;
+    cout << "Plik zostal zapisany" << endl;
     inputfile.close();
     return 0;
 }
@@ -54,7 +54,7 @@ void max_znak(int Licznik[])
     {
         if (Licznik[i] == temp)
         {
-            outputfile << "Najwiecej razy wystapila litera " << char(i + 'A') << " stalo sie to az " << temp << " razy.";
+            outputfile << "Najwiecej razy wystapila litera " << char(i + 'A') << " stalo sie to az " << temp << " razy";
         }
     }
 }
