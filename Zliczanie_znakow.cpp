@@ -10,12 +10,13 @@ int main()
 {
     int Licznik[26] = {0};
     string tekst = " ";
-    ifstream inputfile("C:\\Users\\bartek\\Desktop\\jawny.txt");
+    ifstream inputfile;
+    inputfile.open("C:\\Users\\bartek\\Desktop\\jawny.txt", ios::in);
     while (!inputfile.eof())
     {
         inputfile >> tekst;
+        zlicz(Licznik, tekst);
     }
-    zlicz(Licznik, tekst);
     max_znak(Licznik);
     wyswietl(Licznik);
     cout << "Plik zostal zapisany" << endl;
@@ -39,7 +40,8 @@ void zlicz(int Licznik[], string tekst)
 void max_znak(int Licznik[])
 {
     int max_z = 0, temp;
-    ofstream outputfile("C:\\Users\\bartek\\Desktop\\wynik.txt");
+    ofstream outputfile;
+    outputfile.open("C:\\Users\\bartek\\Desktop\\wynik.txt", ios::out);
     for (int i = 0; i < 26; i++)
     {
         if (Licznik[i] > Licznik[max_z])
@@ -54,20 +56,22 @@ void max_znak(int Licznik[])
     {
         if (Licznik[i] == temp)
         {
-            outputfile << "Najwiecej razy wystapila litera " << char(i + 'A') << " stalo sie to az " << temp << " razy";
+            outputfile << "Najwiecej razy wystapila litera " << char(i + 'A') << " stalo sie to az " << temp << " razy" << endl;
         }
     }
+    outputfile.close();
 }
 
 void wyswietl(int Licznik[])
 {
-    ofstream outputfile("C:\\Users\\bartek\\Desktop\\wynik.txt");
+    ofstream outputfile;
+    outputfile.open("C:\\Users\\bartek\\Desktop\\wynik.txt", ios::out);
     for (int i = 0; i < 26; i++)
     {
-        if (Licznik[i] > 0)
+        if (Licznik[i] >= 0)
         {
             outputfile << char(i + 'A') << " - " << Licznik[i] << endl;
         }
     }
-    outputfile.close();
+   outputfile.close();
 }
