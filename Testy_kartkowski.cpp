@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    int i = 0, k = 2, j;
+    int i = 1, k = 2, j;
     string s = " ", w = " ";
     cout << "Podaj s:";
     cin >> s;
