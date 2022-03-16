@@ -11,8 +11,8 @@ int main()
 	while (!infile.eof())
 	{
 		infile >> s;
-		Liczenie_dl_wyrazow(s);
 	}
+	Liczenie_dl_wyrazow(s);
 	cout << "Plik został zapisany!" << endl;
 	return 0;
 }
