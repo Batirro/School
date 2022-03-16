@@ -10,7 +10,7 @@ int main()
 	ifstream infile("C:\\Users\\bartek\\Desktop\\ciag.txt");
 	while (!infile.eof())
 	{
-		infile >> s;
+		getline(infile,s);
 	}
 	Liczenie_dl_wyrazow(s);
 	cout << "Plik został zapisany!" << endl;
