@@ -22,7 +22,7 @@ int main()
 		{
 			Licznik[i] = 0;
 		}
-	fstream inputfile ("C:\\Users\\uczen_09\\Desktop\\tajne.txt");
+	fstream inputfile ("C:\\Users\\bartek\\Desktop\\tajne.txt");
 	while(!inputfile.eof())
 		{
 			getline(inputfile, tekst);
@@ -76,7 +76,7 @@ int max_znak(int Licznik[])
 
 void wyswietl(int Licznik[])
 {
-	ofstream outputfile("C:\\Users\\uczen_09\\Desktop\\czestosc.txt");
+	ofstream outputfile("C:\\Users\\bartek\\Desktop\\czestosc.txt");
 	int pom = max_znak(Licznik), i1;
 	for (int i = 0; i < 35; i++)
 		{
