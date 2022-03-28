@@ -24,7 +24,7 @@ void stworz_plik()
 {
 	//srand(time(NULL));
 	ofstream wyjscie;
-	wyjscie.open("C:\\Users\\uczen_09\\Desktop\\losowe.txt");
+	wyjscie.open("C:\\Users\\bartek\\Desktop\\losowe.txt");
 	for(int i=0; i<1000; i++)
 		{
 			wyjscie << -1000 + rand()%(2001) << endl;
@@ -36,7 +36,7 @@ void liczby_losowe(int Tab[])
 {
 	int j=0;
 	ifstream wejscie;
-	wejscie.open("C:\\Users\\uczen_09\\Desktop\\losowe.txt");
+	wejscie.open("C:\\Users\\bartek\\Desktop\\losowe.txt");
 	while(!wejscie.eof())
 		{
 			wejscie >> Tab[j];
@@ -46,7 +46,7 @@ void liczby_losowe(int Tab[])
 
 bool znajdz_liczbe(int Tab[], int liczba)
 {
-	int k=0;
+	int lewo = 0, prawo, srodek = ;
 	for(int i=0; i<1000; i++)
 		{
 			if(Tab[i]==liczba)
