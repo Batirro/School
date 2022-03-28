@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
+#include <cstdio>
 
 using namespace std;
 void stworz_plik();
-void liczby_losowe(int []);
-bool znajdz_liczbe(int [], int);
+void liczby_losowe(int[]);
+bool znajdz_liczbe(int[], int);
+void usuwanie_plik();
 
 int main()
 {
@@ -13,44 +15,66 @@ int main()
 	cin >> liczba;
 	stworz_plik();
 	liczby_losowe(Tab);
-	if(znajdz_liczbe(Tab, liczba))
-		cout << endl << "true\n";
+	if (znajdz_liczbe(Tab, liczba))
+		cout << "Liczba " << liczba << " znajduje się w pliku." << endl;
 	else
-		cout << endl << "false\n";
+		cout << "Liczba " << liczba << " nie znajduje się w pliku." << endl;
+	usuwanie_plik();
 	return 0;
 }
 
 void stworz_plik()
 {
-	//srand(time(NULL));
+	srand(time(NULL));
 	ofstream wyjscie;
 	wyjscie.open("C:\\Users\\bartek\\Desktop\\losowe.txt");
-	for(int i=0; i<1000; i++)
-		{
-			wyjscie << -1000 + rand()%(2001) << endl;
-		}
+	for (int i = 0; i < 1000; i++)
+	{
+		wyjscie << rand() % (20) << endl;
+	}
 	wyjscie.close();
+}
+
+void usuwanie_plik()
+{
+	char deleted[] = "C:\\Users\\bartek\\Desktop\\losowe.txt";
+	int result = remove(deleted);
+	if (result == 0)
+	{
+		cout << "Plik został pomyślnie usunięty!" << endl;
+	}
+	else
+	{
+		cout << "Plik nie został usunięty!" << endl;
+	}
 }
 
 void liczby_losowe(int Tab[])
 {
-	int j=0;
+	int j = 0;
 	ifstream wejscie;
 	wejscie.open("C:\\Users\\bartek\\Desktop\\losowe.txt");
-	while(!wejscie.eof())
-		{
-			wejscie >> Tab[j];
-			j++;
-		}
+	while (!wejscie.eof())
+	{
+		wejscie >> Tab[j];
+		j++;
+	}
 }
 
 bool znajdz_liczbe(int Tab[], int liczba)
 {
-	int lewo = 0, prawo, srodek = ;
-	for(int i=0; i<1000; i++)
+	int lewo = 0, prawo = 999, srodek;
+	while (lewo < prawo)
+	{
+		srodek = (lewo + prawo) / 2;
+		if (Tab[srodek] < liczba)
 		{
-			if(Tab[i]==liczba)
-				return true;
+			lewo = srodek + 1;
 		}
-	return false;
+		else
+		{
+			prawo = srodek;
+		}
+	}
+	return (Tab[lewo] == liczba);
 }
