@@ -1,93 +1,75 @@
 #include <bits/stdc++.h>
-#include <windows.h>
 
 using namespace std;
 
-void zlicz(int Licznik[], string tekst);
-int max_znak(int Licznik[]);
-void wyswietl(int Licznik[]);
-
-const string alfabet_pl_m = "aąbcćdeęfghijklłmnńoóprsśtuvwxyzźż";
-const string alfabet_pl_d = "AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUVWXYZŹŻ";
+void wczytywanie_z_pliku(int T[]);
+void wyswietl(int liczba);
+void rozklad(int T[], int liczba);
+int ilosc_pow(int T[], int liczba);
 
 int main()
 {
-	SetConsoleCP(852);
-	setlocale(LC_ALL, "");
-	int Licznik[35] = {0};
-	string tekst = " ";
-	int i, j;
-	for (i = 0; i < 35; i++)
-	{
-		Licznik[i] = 0;
-	}
-	fstream inputfile("C:\\Users\\bartek\\Desktop\\tajne.txt");
-	while (!inputfile.eof())
-	{
-		getline(inputfile, tekst);
-		for (i = 0; i < tekst.size(); i++)
-		{
-			j = alfabet_pl_m.find(tekst[i]);
-			if (j >= 0 && j < 35)
-			{
-				Licznik[j]++;
-			}
-			j = alfabet_pl_d.find(tekst[i]);
-			if (j >= 0 && j < 35)
-			{
-				Licznik[j]++;
-			}
-		}
-	}
-	wyswietl(Licznik);
-	cout << "Plik został pomyślnie zapisany!" << endl;
-	inputfile.close();
+	int liczba;
+	cout << "Podaj liczbe: ";
+	cin >> liczba;
+	wyswietl(liczba);
 	return 0;
 }
 
-void zlicz(int Licznik[], string tekst)
+void wczytywanie_z_pliku(int T[])
 {
-	char znak;
-	for (int i = 0; i < tekst.size(); i++)
+	 fstream inputfile("C:\\Users\\bartek\\Desktop\\szukanie_bin.txt");
+	 for (int i = 0; i < 1023; i++)
+	 {
+		 inputfile << T[i];
+	 }
+	 inputfile.close();
+}
+
+void rozklad(int T[], int liczba)
+{
+	int lewo = 0, prawo = 1023, srodek;
+	while (lewo < prawo)
 	{
-		znak = toupper(tekst[i]);
-		if (znak >= 'A' && znak <= '?')
+		cout << lewo << " " << prawo << " ";
+		srodek = (lewo + prawo) / 2;
+		cout << srodek << endl;
+		if (T[srodek] < liczba)
 		{
-			Licznik[znak - 'A']++;
+			lewo = srodek + 1;
+		}
+		else
+		{
+			prawo = srodek;
 		}
 	}
 }
 
-int max_znak(int Licznik[])
+int ilosc_pow(int T[], int liczba)
 {
-	int max_z = 0, temp;
-	for (int i = 0; i < 35; i++)
+	int lewo = 0, prawo = 1023, srodek, temp;
+	while (lewo < prawo)
 	{
-		if (Licznik[i] > Licznik[max_z])
+		srodek = (lewo + prawo) / 2;
+		if (T[srodek] < liczba)
 		{
-			max_z = i;
+			lewo = srodek + 1;
 		}
+		else
+		{
+			prawo = srodek;
+		}
+		temp++;
 	}
-
-	temp = Licznik[max_z];
 	return temp;
 }
 
-void wyswietl(int Licznik[])
+void wyswietl(int liczba)
 {
-	ofstream outputfile("C:\\Users\\bartek\\Desktop\\czestosc.txt");
-	int pom = max_znak(Licznik), i1;
-	for (int i = 0; i < 35; i++)
-	{
-		if (Licznik[i] >= 0)
-		{
-			outputfile << alfabet_pl_d[i] << " - " << Licznik[i] << endl;
-		}
-		if (Licznik[i] == pom)
-		{
-			i1 = i;
-		}
-	}
-	outputfile << "Najwiecej razy wystapila litera " << alfabet_pl_d[i1] << " stalo sie to az " << pom << " razy" << endl;
+	ofstream outputfile("C:\\Users\\bartek\\Desktop\\ilosc.txt");
+	int T[1024] = {0};
+	wczytywanie_z_pliku(T);
+	rozklad(T, liczba);
+	outputfile << "Ilość powtórzeń to " << ilosc_pow(T, liczba) << endl;
 	outputfile.close();
 }
