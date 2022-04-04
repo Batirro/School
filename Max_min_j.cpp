@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void min_max(int T[], int min, int maks);
+void tworzenie_tab(int T[]);
+
+int main()
+{
+	int min, maks;
+	int T[100] = {0};
+	tworzenie_tab(T);
+	min_max(T, min, maks);
+	return 0;
+}
+
+void tworzenie_tab(int T[])
+{
+	srand(time(NULL));
+	T[0] = rand() % 20;
+	for (int i = 1; i < 100; i++)
+	{
+		T[i] = T[i - 1] + rand() % 20;
+	}
+}
+
+void min_max(int T[], int min, int maks)
+{
+	if (T[0]>T[1])
+		{
+			min = T[1];
+			maks = T[0];
+		}
+	else
+		{
+			min = T[1];
+			maks = T[0];
+		}
+	for(int i = 2; i < 100; i+=2)
+		{
+			if(T[i] > T[i+1])
+				{
+					if(T[i+1] < min)
+						{
+							min = T[i+1];
+						}
+					if(T[i] > maks)
+						{
+							maks = T[i];
+						}
+				}
+			else
+				{
+					if(T[i] < min)
+						{
+							min = T[i];
+						}
+					if(T[i+1] > maks)
+						{
+							maks = T[i+1];
+						}
+				}
+		}
+	cout << "Najwieksza wartosc tablicy to " << maks << endl;
+	cout << "Najmniejsza wartosc tablicy to " << min << endl;
+}
