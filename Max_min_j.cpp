@@ -2,29 +2,31 @@
 
 using namespace std;
 
-void min_max(int T[], int min, int maks);
-void tworzenie_tab(int T[]);
+void min_max(int T[], int min, int maks, int n);
+void tworzenie_tab(int T[], int n);
 
 int main()
 {
-	int min, maks;
-	int T[100] = {0};
-	tworzenie_tab(T);
-	min_max(T, min, maks);
+	int min, maks, n;
+	cout << "Podaj ilosc elementow tablicy: ";
+	cin >> n;
+	int T[n] = {0};
+	tworzenie_tab(T, n);
+	min_max(T, min, maks, n);
 	return 0;
 }
 
-void tworzenie_tab(int T[])
+void tworzenie_tab(int T[], int n)
 {
 	srand(time(NULL));
 	T[0] = rand() % 20;
-	for (int i = 1; i < 100; i++)
+	for (int i = 1; i < n; i++)
 	{
 		T[i] = T[i - 1] + rand() % 20;
 	}
 }
 
-void min_max(int T[], int min, int maks)
+void min_max(int T[], int min, int maks, int n)
 {
 	if (T[0]>T[1])
 		{
@@ -36,7 +38,7 @@ void min_max(int T[], int min, int maks)
 			min = T[1];
 			maks = T[0];
 		}
-	for(int i = 2; i < 100; i+=2)
+	for(int i = 2; i < n; i+=2)
 		{
 			if(T[i] > T[i+1])
 				{
