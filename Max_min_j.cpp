@@ -38,7 +38,7 @@ void min_max(int T[], int min, int maks, int n)
 			min = T[1];
 			maks = T[0];
 		}
-	for(int i = 2; i < n; i+=2)
+	for(int i = 2; i < n - 1; i+=2)
 		{
 			if(T[i] > T[i+1])
 				{
