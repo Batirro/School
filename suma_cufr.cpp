@@ -5,10 +5,9 @@ using namespace std;
 
 void tworzenie_tab(int T[], int n);
 void dodawanie_tab(int T[], int n);
-void min_max(int T[], int n);
-void tablica_sum(int Tab[], int T[], int n);
+void min_max(int Tab[], int n);
 void usuwanie_plik();
-int suma_cyfr(int T[], int n);
+void suma_cyfr(int T[], int Tab[], int n);
 
 
 int main()
@@ -20,7 +19,8 @@ int main()
     int Tab[n] = {0};
     tworzenie_tab(T, n);
     dodawanie_tab(T, n);
-    tablica_sum(T, Tab, n);
+    suma_cyfr(T, Tab, n);
+    min_max(Tab, n);
     usuwanie_plik();
     return 0;
 }
@@ -31,7 +31,7 @@ void tworzenie_tab(int T[], int n)
     ofstream tablica("C:\\Users\\bartek\\Desktop\\tablica.txt");
     for(int i = 0; i < n; i++)
         {
-            tablica << rand() % 20 << endl;
+            tablica << rand() % 999999999 << endl;
         }
     tablica.close();
 }
@@ -60,7 +60,7 @@ void usuwanie_plik()
 	}
 }
 
-int suma_cyfr(int T[], int n)
+void suma_cyfr(int T[], int Tab[], int n)
 {
 	int suma = 0;
 	for (int i = 0; i < n; i++)
@@ -68,19 +68,13 @@ int suma_cyfr(int T[], int n)
 		int liczba = T[i];	
 		while (liczba != 0)
 		{
-			suma = liczba%10;
+			suma = suma + (liczba%10);
 			liczba = liczba/10;		
 		}
-	}
-	return suma;
-}
 
-void tablica_sum(int Tab[], int T[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        Tab[i] = suma_cyfr(T, n);
-    }
+        Tab[i] = suma;
+        suma = 0;
+	}
 }
 
 void min_max(int Tab[], int n)
