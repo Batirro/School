@@ -41,6 +41,7 @@ void dodawanie_tab(int T[], int n)
 
 void min_max(int T[], int min, int maks, int n)
 {
+	int licznik = 0;
     if (T[0]>T[1])
         {
             min = T[1];
@@ -75,7 +76,9 @@ void min_max(int T[], int min, int maks, int n)
                             maks = T[i+1];
                         }
                 }
+        	licznik = licznik + 3;
         }
     cout << "Najwieksza wartosc tablicy to " << maks << endl;
     cout << "Najmniejsza wartosc tablicy to " << min << endl;
+    cout << "Liczba porownan to: " << licznik << endl;
 }
