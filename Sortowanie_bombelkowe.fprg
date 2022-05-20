@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="uczen_08"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-05-20 02:10:09 PM"/>
+        <attribute name="created" value="dWN6ZW5fMDg7REVTS1RPUC1IS1ZHVU4wOzIwMjItMDUtMjA7MDE6NTc6NTQgUE07MzEyNQ=="/>
+        <attribute name="edited" value="dWN6ZW5fMDg7REVTS1RPUC1IS1ZHVU4wOzIwMjItMDUtMjA7MDI6MTA6MDkgUE07MTszMjIz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="Tablica" type="Integer" array="True" size="10"/>
+            <declare name="i, n, j, temp, licznik1, licznik2" type="Integer" array="False" size=""/>
+            <assign variable="n" expression="10"/>
+            <assign variable="licznik1" expression="0"/>
+            <assign variable="licznik2" expression="0"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <input variable="Tablica[i]"/>
+            </for>
+            <for variable="i" start="1" end="n-1" direction="inc" step="1">
+                <for variable="j" start="0" end="n-i-1" direction="inc" step="1">
+                    <if expression="Tablica[j]&gt;Tablica[j+1]">
+                        <then>
+                            <assign variable="temp" expression="Tablica[j]"/>
+                            <assign variable="Tablica[j]" expression="Tablica[j+1]"/>
+                            <assign variable="Tablica[j+1]" expression="temp"/>
+                            <assign variable="licznik2" expression="licznik2 + 1"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <assign variable="licznik1" expression="licznik1 + 1"/>
+                </for>
+            </for>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <output expression="Tablica[i]" newline="True"/>
+            </for>
+            <output expression="licznik1" newline="True"/>
+            <output expression="licznik2" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
