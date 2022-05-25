@@ -4,6 +4,7 @@ using namespace std;
 
 void wybor_sort(int n, int T[]);
 void tworzenie_tab(int T[], int n);
+void dodawanie_tab(int T[], int n);
 void wypisz(int T[], int n);
 
 int main()
@@ -13,6 +14,7 @@ int main()
 	cin >> n;
 	int T[n] = {0};
 	tworzenie_tab(T, n);
+	dodawanie_tab(T, n);
 	cout << "Nieposortowane" << endl;
 	wypisz(T, n);
 	wybor_sort(n, T);
@@ -23,14 +25,23 @@ int main()
 void tworzenie_tab(int T[], int n)
  {
  	srand(time(NULL));
- 	ofstream wyjscie;
- 	wyjscie.open("C:\\Users\\bartek\\Desktop\\losowe.txt");
+ 	ofstream tablica;
+ 	tablica.open("C:\\Users\\uczen_09\\Desktop\\tablica.txt");
  	for (int i = 0; i < 1000; i++)
  	{
- 		wyjscie << rand() % (20) << endl;
+ 		tablica << rand() % (20) << endl;
  	}
- 	wyjscie.close();
+ 	tablica.close();
  }
+ void dodawanie_tab(int T[], int n)
+{
+    ifstream tablica("C:\\Users\\uczen_09\\Desktop\\tablica.txt");
+    for (int i = 0; i < n; i++)
+    {
+        tablica >> T[i];
+    }
+    tablica.close();
+}
 void wybor_sort(int n, int T[])
 {
 	int i, j, temp = 0;
