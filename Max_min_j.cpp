@@ -2,34 +2,38 @@
 
 using namespace std;
 
-void min_max(int T[], int min, int maks, int n);
+void wybor_sort(int n, int T[]);
 void tworzenie_tab(int T[], int n);
 void dodawanie_tab(int T[], int n);
+void wypisz(int T[], int n);
 
 int main()
 {
-    int min, maks, n;
-    cout << "Podaj ilosc elementow tablicy: ";
-    cin >> n;
-    int T[n] = {0};
-    tworzenie_tab(T, n);
-    dodawanie_tab(T, n);
-    min_max(T, min, maks, n);
-    return 0;
+	int n = 0;
+	cout << "Podaj ilosc elementow tablicy: ";
+	cin >> n;
+	int T[n] = {0};
+	tworzenie_tab(T, n);
+	dodawanie_tab(T, n);
+	cout << "Nieposortowane" << endl;
+	wypisz(T, n);
+	wybor_sort(n, T);
+	cout << "Posortowane" << endl;
+	wypisz(T, n);
 }
 
 void tworzenie_tab(int T[], int n)
-{
-    srand(time(NULL));
-	ofstream tablica("C:\\Users\\uczen_09\\Desktop\\tablica.txt");
-	for(int i = 0; i < n; i++)
-	{
-		tablica << rand() % 20 << endl;
-	}
-	tablica.close();
-}
-
-void dodawanie_tab(int T[], int n)
+ {
+ 	srand(time(NULL));
+ 	ofstream tablica;
+ 	tablica.open("C:\\Users\\uczen_09\\Desktop\\tablica.txt");
+ 	for (int i = 0; i < 1000; i++)
+ 	{
+ 		tablica << rand() % (20) << endl;
+ 	}
+ 	tablica.close();
+ }
+ void dodawanie_tab(int T[], int n)
 {
     ifstream tablica("C:\\Users\\uczen_09\\Desktop\\tablica.txt");
     for (int i = 0; i < n; i++)
@@ -38,47 +42,27 @@ void dodawanie_tab(int T[], int n)
     }
     tablica.close();
 }
-
-void min_max(int T[], int min, int maks, int n)
+void wybor_sort(int n, int T[])
 {
-	int licznik = 0;
-    if (T[0]>T[1])
-        {
-            min = T[1];
-            maks = T[0];
-        }
-    else
-        {
-            min = T[1];
-            maks = T[0];
-        }
-    for(int i = 2; i < n - 1; i+=2)
-        {
-            if(T[i] > T[i+1])
-                {
-                    if(T[i+1] < min)
-                        {
-                            min = T[i+1];
-                        }
-                    if(T[i] > maks)
-                        {
-                            maks = T[i];
-                        }
-                }
-            else
-                {
-                    if(T[i] < min)
-                        {
-                            min = T[i];
-                        }
-                    if(T[i+1] > maks)
-                        {
-                            maks = T[i+1];
-                        }
-                }
-        	licznik = licznik + 3;
-        }
-    cout << "Najwieksza wartosc tablicy to " << maks << endl;
-    cout << "Najmniejsza wartosc tablicy to " << min << endl;
-    cout << "Liczba porownan to: " << licznik << endl;
+	int i, j, temp = 0;
+	for (i = 0; i < n-1; i++)
+	{
+		temp = i;
+		for(j = i + 1; j < n; j++)
+		{
+			if (T[j]<T[temp])
+			{
+				temp = j;
+			}
+		}
+		swap(T[temp], T[i]);
+	}
+}
+void wypisz(int T[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << T[i] << " ";
+	}
+		cout << endl;
 }
