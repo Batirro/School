@@ -2,24 +2,19 @@
 
 using namespace std;
 
-void sort (string tekst);
+string sort (string tekst);
 bool anagram_test(string tekst1, string tekst2);
-void from_string_to_file(string tekst);
-void from_file_to_string(string tekst);
+void from_file_to_string(string tekst1, string tekst2);
 
 int main()
 {
 	string tekst = "", tekst1 = "", tekst2 = "";
-	for (int i = 0; i <= 10; i++)
-	{
-		cout << "Podaj wyraz: ";
-		from_string_to_file(tekst);
-	}
-//	for (int i = 0; i <= 10; i++)
-//	{
-//		from_file_to_string(tekst);
-//	}	
-	if (anagram_test)
+	// cout << "podaj wyraz:";
+	// cin >> tekst1;
+	// cout << "podaj wyraz:";
+	// cin >> tekst2;
+	from_file_to_string(tekst1, tekst2);
+	if (anagram_test(tekst1, tekst2))
 	{
 		cout << "Wyrazy sa anagramami." << endl;
 	}
@@ -29,23 +24,17 @@ int main()
 	}
 }
 
-void from_file_to_string(string tekst)
+void from_file_to_string(string tekst1, string tekst2)
 {
-	ifstream tekstf("C:\\Users\\uczen_09\\Desktop\\tekst.txt");
-	tekstf << tekst << " ";
-    tekstf.close();
+	ifstream tekst ("C:\\Users\\bartek\\Desktop\\tekst.txt");
+	tekst >> tekst1;
+	tekst >> tekst2;
+	tekst.close();
 }
 
-//void from_file_to_string(string tekst1)
-//{
-//	ofstream tekstf("C:\\Users\\uczen_09\\Desktop\\tekst.txt");
-//	tekst1 = tekstf;
-//    tekstf.close();	
-//}
-
-void sort (string tekst)
+string sort (string tekst)
 {
-	int i, j, temp = 0;
+	int i, j, temp = 0, x;
 	for (i = 0; i < tekst.size()-1; i++)
 	{
 		temp = i;
@@ -58,6 +47,7 @@ void sort (string tekst)
 		}
 		swap(tekst[temp], tekst[i]);
 	}
+	return tekst;
 }
 
 bool anagram_test(string tekst1, string tekst2)
@@ -66,7 +56,9 @@ bool anagram_test(string tekst1, string tekst2)
 	{
 		return false;
 	}	
-	sort(tekst1);
-	sort(tekst2);
-	return (tekst1 == tekst2);
+	if(sort(tekst1) == sort(tekst2))
+	{
+		return true;
+	}
+	return false;
 }
