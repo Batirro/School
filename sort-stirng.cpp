@@ -33,10 +33,11 @@ int main()
 
 void from_file_to_string(string tekst1, string tekst2)
 {
-	ifstream tekst ("C:\\Users\\bartek\\Desktop\\tekst.txt");
+	ifstream tekst("C:\\Users\\bartek\\Desktop\\tekst.txt");
 	while (!tekst.eof())
 	{
-		tekst >> tekst1 >> tekst2;
+		getline(tekst, tekst1);
+		getline(tekst, tekst2);
 	}
 	tekst.close();
 }
