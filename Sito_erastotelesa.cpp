@@ -2,6 +2,7 @@
 using namespace std;
 
 void sito(int T[], int n);
+void rozklad(int T[], int n);
 void tworzenie_tab(int T[], int n);
 void wypisz(int T[], int n);
 
@@ -10,6 +11,7 @@ int main()
     int n = 100;
     int T[100] = {0};
     tworzenie_tab(T, n);
+    //rozklad(T, n);
     sito(T, n);
     wypisz(T, n);
 }
@@ -50,12 +52,34 @@ void sito(int T[], int n)
     }
 }
 
+void rozklad(int T[], int n)
+{
+    int i = 0;
+    int k = 2;
+    while (i > n)
+    {
+        while (T[i] % k == 0)
+        {
+            cout << T[i] << " " << endl;
+            T[i]/= k;
+        }
+        k++;
+        i++;
+    }
+}
+
 void wypisz(int T[], int n)
 {
+    int w = 0;
     cout << "Liczby pierwsze to: " << endl;
     for (int i = 2; i < n; i++)
     {
+        while (w <= 10)
+        {
+        cout << endl;
         if (T[i] != 0)
             cout << T[i] << " ";
+        w++;
+        }
     }
 }

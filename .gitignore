@@ -4,3 +4,4 @@
 *.exe
 *.docx
 *.fprg
+.vscode/c_cpp_properties.json
