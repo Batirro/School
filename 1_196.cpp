@@ -5,34 +5,36 @@ void sito(int n, int a, int b);
 
 int main()
 {
-    int a, b, n;
-    bool pierwsze[n];
-    cout << "Podaj przedzial liczb:" << endl;
-    cout << "Podaj a:";
+    int n, a, b;
+    cout << "Podaj maksymalny zakres liczb:";
+    cin >> n;
+    cout << "Podaj dolna granice:";
     cin >> a;
-    cout << "Podaj b:";
+    cout << "Podaj gorna granice:";
     cin >> b;
-    n = b - a;
-    cout << "Liczby pierwsze:" << endl;
     sito(n, a, b);
+    return 0;
 }
+
 void sito(int n, int a, int b)
 {
+    int i, d = 3;
     bool pierwsze[n];
-    int d = 3, i;
+
     pierwsze[2] = true;
-    for (i = 3; i <= b; i++)
+
+    for (i = a + 2; i <= b; i++)
     {
         if (i % 2 == 1)
         {
-            pierwsze[i] = true; 
+            pierwsze[i] = true;
         }
         else
         {
             pierwsze[i] = false;
         }
     }
-    while (d * d < n)
+    while (d * d < b)
     {
         i = d;
         while (i * d < n)
@@ -50,6 +52,10 @@ void sito(int n, int a, int b)
         if (pierwsze[i] == true)
         {
             cout << i << " ";
+			if (i % 10 == 0)
+			{
+				cout << endl;
+			}
         }
     }
 }

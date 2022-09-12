@@ -44,3 +44,6 @@ void Liczenie_dl_wyrazow(string s)
 		}
 	}
 }
+
+
+

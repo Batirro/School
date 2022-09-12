@@ -15,10 +15,6 @@ int main()
 	SetConsoleCP(852);
 	setlocale(LC_ALL, "");
 	string tekst = "", tekst1 = "", tekst2 = "";
-	// cout << "podaj wyraz:";
-	// cin >> tekst1;
-	// cout << "podaj wyraz:";
-	// cin >> tekst2;
 	from_file_to_string(tekst1, tekst2);
 	cout << tekst1 << " " << tekst2;
 /* 	if (anagram_test(tekst1, tekst2))
@@ -33,7 +29,8 @@ int main()
 
 void from_file_to_string(string tekst1, string tekst2)
 {
-	ifstream tekst("C:\\Users\\bartek\\Desktop\\tekst.txt");
+	ifstream tekst;
+	tekst.open("C:\\Users\\bartek\\Desktop\\tekst.txt");
 	while (!tekst.eof())
 	{
 		getline(tekst, tekst1);

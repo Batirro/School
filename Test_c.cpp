@@ -1,99 +1,57 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-void wczytywanie_z_pliku(int T[]);
-void wyswietl(int liczba);
-int ilosc_pow(int T[], int liczba);
-bool szukanie_bin(int T[], int liczba);
+void sito(int n, int a, int b);
 
 int main()
 {
-	int liczba;
-	cout << "Podaj liczbe: ";
-	cin >> liczba;
-	wyswietl(liczba);
-	cout << "Plik został pomyślnie zapisany!" << endl;
+	int n, a, b;
+	cout << "Podaj maksymalny zakres liczb:";
+	cin >> n;
+	cout << "Podaj dolna granice:";
+	cin >> a;
+	cout << "Podaj gorna granice:";
+	cin >> b;
+	sito(n, a, b);
 	return 0;
 }
 
-void wczytywanie_z_pliku(int T[])
+void sito(int n, int a, int b)
 {
-	 ifstream inputfile("C:\\Users\\bartek\\Desktop\\szukanie_bin.txt");
-	 for (int i = 0; i < 1023; i++)
-	 {
-		 inputfile >> T[i];
-	 }
-	 inputfile.close();
-}
+	int i, d = a + 1;
+	bool pierwsze[n];
 
-int ilosc_pow(int T[], int liczba)
-{
-	int lewo = 0, prawo = 1023, srodek, temp = 0;
-	while (lewo < prawo)
+	pierwsze[2] = true;
+
+	for (i = a; i <= b; i++)
 	{
-		srodek = (lewo + prawo) / 2;
-		if (T[srodek] < liczba)
+		if (i % 2 == 1)
 		{
-			lewo = srodek + 1;
+			pierwsze[i] = true;
 		}
 		else
 		{
-			prawo = srodek;
+			pierwsze[i] = false;
 		}
-		temp++;
 	}
-	return temp;
-}
-
-bool szukanie_bin(int T[], int liczba)
-{
-	int lewo = 0, prawo = 1023, srodek;
-	while (lewo < prawo)
+	while (d * d < b)
 	{
-		srodek = (lewo + prawo) / 2;
-		if (T[srodek] < liczba)
+		i = d;
+		while (i * d < n)
 		{
-			lewo = srodek + 1;
+			pierwsze[i * d] = false;
+			i = i + 2;
 		}
-		else
+		do
 		{
-			prawo = srodek;
-		}
+			d = d + 2;
+		} while (!pierwsze[d]);
 	}
-	return (T[lewo] == liczba);
-}
-
-void wyswietl(int liczba)
-{
-	int T[1024] = {0};
-	int lewo = 0, prawo = 1023, srodek;
-	ofstream outputfile("C:\\Users\\bartek\\Desktop\\odp_infa_sort.txt");
-	wczytywanie_z_pliku(T);
-	if (szukanie_bin(T, liczba))
+	for (i = a; i <= b; i++)
 	{
-		outputfile << "Liczba " << liczba << " występuje." << endl;
-	}
-	else
-	{
-		outputfile << "Liczba " << liczba << " nie występuje." << endl;
-	}
-	outputfile << "Ilość powtórzeń to " << ilosc_pow(T, liczba) << endl;
-	outputfile << "Szczegółowy rozkład: " << endl;
-	while (lewo < prawo)
-	{
-		outputfile << lewo << " " << prawo << " ";
-		srodek = (lewo + prawo) / 2;
-		outputfile << srodek << endl;
-		if (T[srodek] < liczba)
+		if (pierwsze[i] == true)
 		{
-			lewo = srodek + 1;
-		}
-		else
-		{
-			prawo = srodek;
+			cout << i << " ";
 		}
 	}
-	outputfile << "Numer w tablicy gdzie znajduje się liczba to " << lewo << endl;	
-	outputfile.close();
 }
