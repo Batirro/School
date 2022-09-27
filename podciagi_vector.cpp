@@ -2,17 +2,19 @@
 
 using namespace std;
 
-void wcztywanie(vector <int> vtab);
-void wypisz(vector <int> vtab);
+void wcztywanie(vector <int> vtablica);
+void wypisz(vector <int> vtablica);
+void podciag(vector <int> vtablica);
 
 int main()
 {
-    vector <int> vtab;
-    wcztywanie(vtab);
-    wypisz(vtab);
+    vector <int> vtablica;
+    wcztywanie(vtablica);
+    wypisz(vtablica);
+    podciag(vtablica);
 }
 
-void wcztywanie(vector <int> vtab)
+void wcztywanie(vector <int> vtablica)
 {
     ifstream plik;
     int liczba;
@@ -20,16 +22,22 @@ void wcztywanie(vector <int> vtab)
     while (!plik.eof())
     {
         plik >> liczba;
-        vtab.push_back(liczba);
+        vtablica.push_back(liczba);
+        cout << vtablica << endl;
     }
     plik.close();
 }
-void wypisz(vector <int> vtab)
+void wypisz(vector <int> vtablica)
 {
-    for (int i = 0; i < vtab.size(); i++)
+    for (int i = 0; i < vtablica.size(); i++)
     {
-        cout << vtab[i] << endl;
-        cout << "Rozmiar vectora: " << vtab.size() << endl;
+        cout << vtablica[i] << endl;
+        cout << "Rozmiar vectora: " << vtablica.size() << endl;
     }
     
+}
+
+void podciag(vector <int> vtablica)
+{
+
 }
