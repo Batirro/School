@@ -17,6 +17,10 @@ int main()
     }
     pierwsze[0] = false;
     d = 3;
+    for (i = 0; i <= n - 1; i++)
+    {
+       cout << "Indeks: " << pierwsze[i] << endl;
+    }
     while (d * d < 2 * n)
     {
         if (pierwsze[(d - 1) / 2] == true)
@@ -31,13 +35,6 @@ int main()
             }
         }
         d = d + 2;
-    }
-    for (i = 0; i <= n - 1; i++)
-    {
-        if (pierwsze[i])
-        {
-            cout << 2 * i + 1 << endl;
-        }
     }
     return 0;
 }

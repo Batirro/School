@@ -16,8 +16,7 @@ int main()
             j = i * 2;
             while (j <= n)
             {
-                /* Tab[j] = Tab[j] + 1; */
-                Tab[j] = 1;
+                Tab[j] = Tab[j] + 1;
                 j = j + i;
             }
         }
