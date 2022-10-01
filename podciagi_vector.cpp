@@ -2,42 +2,33 @@
 
 using namespace std;
 
-void wcztywanie(vector <int> vtablica);
-void wypisz(vector <int> vtablica);
-void podciag(vector <int> vtablica);
-
 int main()
 {
-    vector <int> vtablica;
-    wcztywanie(vtablica);
-    wypisz(vtablica);
-    podciag(vtablica);
-}
-
-void wcztywanie(vector <int> vtablica)
-{
+    vector<int> vtablica;
     ifstream plik;
     int liczba;
-    plik.open("/home/batir/Pobrane/ciag.txt");
+    plik.open("/home/batir/Pobrane/testciagi.txt");
     while (!plik.eof())
     {
         plik >> liczba;
         vtablica.push_back(liczba);
-        cout << vtablica << endl;
     }
     plik.close();
-}
-void wypisz(vector <int> vtablica)
-{
-    for (int i = 0; i < vtablica.size(); i++)
+    for (int i = 1; i < vtablica.size(); i++)
     {
-        cout << vtablica[i] << endl;
-        cout << "Rozmiar vectora: " << vtablica.size() << endl;
+        //cout << vtablica[i] << endl;
     }
-    
-}
-
-void podciag(vector <int> vtablica)
-{
-
+    cout << "Podciagi liczb:" << endl;
+    for (int i = 1; i < vtablica.size(); i++)
+    {
+        if (vtablica[i] < vtablica[i+1])
+        {
+            cout << vtablica[i] << " ";
+        }
+        else
+        {
+            cout << ";" << endl;
+        }
+    }
+    //cout << "Rozmiar vectora: " << vtablica.size() << endl;
 }
