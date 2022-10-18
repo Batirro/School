@@ -2,6 +2,7 @@
 
 using namespace std;
 
+void wpisywanie(vector<int> &Tab);
 void losuj(vector<int> &Tab);
 void wypisz(vector<int> &Tab);
 void PSMS(vector<int> &Tab, int &max_suma, int &max_pocz);
@@ -10,8 +11,7 @@ int main()
 {
     int max_suma, max_pocz, temp = 0, i;
     vector<int> Tab;
-    srand(time(NULL));
-    losuj(Tab);
+    wpisywanie(Tab);
     wypisz(Tab);
     PSMS(Tab, max_suma, max_pocz);
     cout << "Maksymalna suma podciagu spojnego: " << max_suma << endl;
@@ -29,12 +29,14 @@ int main()
     return 0;
 }
 
-void losuj(vector<int> &Tab)
+void wpisywanie(vector<int> &Tab)
 {
     int i = 0;
-    for (i = 0; i < 100; i++)
+    ifstream plik ("C:\\Users\\bartek\\Downloads\\dane5-3.txt");
+    while(!plik.eof())
     {
-        Tab[i] = rand() % 100;
+        plik >> Tab[i];
+        i++;
     }
 }
 
