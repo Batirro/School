@@ -1,38 +1,73 @@
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <cstdlib>
-#include <cmath>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int main() {
-    int j, k, n, i, aktsuma, maxsuma, w, liczba;
-    
-    cout << "Podaj ilość elementów w tablicy:";
-    cin >> n;
-    int t[n];
-    
-    maxsuma = 0;
-    w = 0;
-    cout << "Podaj liczby:" << endl;
-    while (w <= n) {
-        cin >> liczba;
-        t[w] = liczba;
-        w = w + 1;
+void wpisywanie(vector<int> &Tab);
+void wypisz(vector<int> &Tab);
+void PSMS(vector<int> &Tab, int &max_suma, int &max_pocz);
+
+int main()
+{
+    int suma, pocz, temp = 0, i;
+    vector<int> Tab;
+    srand(time(NULL));
+    wpisywanie(Tab);
+    wypisz(Tab);
+    PSMS(Tab, suma, pocz);
+    cout << "Maksymalna suma podciagu spojnego: " << suma << endl;
+    cout << "Podciag spojny o maksymalnej sumie: " << endl;
+
+    i = pocz;
+    while (temp != suma)
+    {
+
+        cout << Tab[i] << " ";
+        temp += Tab[i];
+        i++;
     }
-    for (j = i; j <= n - 1; j++) {
-        aktsuma = 0;
-        for (k = i; k <= j; k++) {
-            aktsuma = aktsuma + t[k];
-            cout << "Aktualna suma to ";
-            cout << aktsuma << endl;
-        }
-        if (aktsuma > maxsuma) {
-            maxsuma = aktsuma;
-        }
-    }
-    cout << "Najlepsza suma to:";
-    cout << maxsuma << endl;
     return 0;
+}
+
+void wpisywanie(vector<int> &Tab)
+{
+    int i = 20, w, number = 0;
+    while (w < i)
+    {
+        number = rand() % 100;
+        Tab.push_back(number);
+        w++;
+    }
+}
+
+void wypisz(vector<int> &Tab)
+{
+    int i = 0;
+    for (i = 0; i < Tab.size(); i++)
+    {
+        cout << Tab[i] << endl;
+    }
+}
+
+void PSMS(vector<int> &Tab, int &max_suma, int &max_pocz)
+{
+    max_suma = 0;
+    max_pocz = 0;
+    int akt_suma = 0, akt_pocz = 0, i;
+    for (i = 0; i < Tab.size(); i++)
+    {
+        if (akt_suma + Tab[i] > 0)
+        {
+            akt_suma += Tab[i];
+            if (akt_suma > max_suma)
+            {
+                max_suma = akt_suma;
+                max_pocz = akt_pocz;
+            }
+        }
+        else
+        {
+            akt_suma = 0;
+            akt_pocz = i + 1;
+        }
+    }
 }
