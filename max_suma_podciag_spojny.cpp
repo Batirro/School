@@ -3,23 +3,21 @@
 using namespace std;
 
 void wpisywanie(vector<int> &Tab);
-void losuj(vector<int> &Tab);
 void wypisz(vector<int> &Tab);
 void PSMS(vector<int> &Tab, int &max_suma, int &max_pocz);
 
 int main()
 {
-    int max_suma, max_pocz, temp = 0, i;
+    int suma, pocz, temp = 0, i;
     vector<int> Tab;
     wpisywanie(Tab);
     wypisz(Tab);
-    PSMS(Tab, max_suma, max_pocz);
-    cout << "Maksymalna suma podciagu spojnego: " << max_suma << endl;
+    PSMS(Tab, suma, pocz);
+    cout << "Maksymalna suma podciagu spojnego: " << suma << endl;
     cout << "Podciag spojny o maksymalnej sumie: " << endl;
 
-    i = max_pocz;
-    while (temp != max_suma)
-
+    i = pocz;
+    while (temp != suma)
     {
 
         cout << Tab[i] << " ";
@@ -31,12 +29,12 @@ int main()
 
 void wpisywanie(vector<int> &Tab)
 {
-    int i = 0;
-    ifstream plik ("C:\\Users\\bartek\\Downloads\\dane5-3.txt");
+    int number = 0;
+    ifstream plik ("C:\\Users\\bartek\\Downloads\\dane5-1.txt");
     while(!plik.eof())
     {
-        plik >> Tab[i];
-        i++;
+        plik >> number;
+        Tab.push_back(number);
     }
 }
 
