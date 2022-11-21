@@ -3,7 +3,6 @@
 using namespace std;
 
 void wpisywanie(vector<int> &Tab);
-void wypisz(vector<int> &Tab);
 void PSMS(vector<int> &Tab, int &max_suma, int &max_pocz);
 
 int main()
@@ -11,19 +10,15 @@ int main()
     int suma, pocz, temp = 0, i;
     vector<int> Tab;
     wpisywanie(Tab);
-    //wypisz(Tab);
     PSMS(Tab, suma, pocz);
-    cout << "Maksymalna suma podciagu spojnego: " << suma << endl;
-    cout << "Podciag spojny o maksymalnej sumie: " << endl;
-
     i = pocz;
+    cout << "Pierwszy indeks to " << i << endl;
     while (temp != suma)
     {
-
-        cout << "Indeks [" << i << "]: " <<Tab[i] << endl;
         temp += Tab[i];
         i++;
     }
+    cout << "Ostatni indeks to " << i << endl;
     return 0;
 }
 
@@ -35,15 +30,6 @@ void wpisywanie(vector<int> &Tab)
     {
         plik >> number;
         Tab.push_back(number);
-    }
-}
-
-void wypisz(vector<int> &Tab)
-{
-    int i = 0;
-    for (i = 0; i < Tab.size(); i++)
-    {
-        cout << Tab[i] << endl;
     }
 }
 
