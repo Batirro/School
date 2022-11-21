@@ -11,7 +11,7 @@ int main()
     int suma, pocz, temp = 0, i;
     vector<int> Tab;
     wpisywanie(Tab);
-    wypisz(Tab);
+    //wypisz(Tab);
     PSMS(Tab, suma, pocz);
     cout << "Maksymalna suma podciagu spojnego: " << suma << endl;
     cout << "Podciag spojny o maksymalnej sumie: " << endl;
@@ -20,7 +20,7 @@ int main()
     while (temp != suma)
     {
 
-        cout << Tab[i] << " ";
+        cout << "Indeks [" << i << "]: " <<Tab[i] << endl;
         temp += Tab[i];
         i++;
     }
@@ -30,7 +30,7 @@ int main()
 void wpisywanie(vector<int> &Tab)
 {
     int number = 0;
-    ifstream plik ("C:\\Users\\bartek\\Downloads\\dane5-1.txt");
+    ifstream plik ("C:\\Users\\bartek\\Downloads\\dane1_3.txt");
     while(!plik.eof())
     {
         plik >> number;
