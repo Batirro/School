@@ -44,11 +44,11 @@ void wypisywanie(vector<int> &Tab)
     int lider = szukanie_idola(Tab);
         if (lider != -1)
         {
-            cout << "Liderem jest " << szukanie_idola(Tab);
+            cout << "Idolem jest " << szukanie_idola(Tab);
         }
         else if (lider == -1)
         {
-            cout << "Nie ma lidera w zbiorze" << endl;
+            cout << "Nie ma idola w zbiorze" << endl;
         }
 }
 void wypisz(vector<int> &Tab)
