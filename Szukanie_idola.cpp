@@ -9,6 +9,7 @@ using namespace std;
 int szukanie_lidera(vector<int> &Tab);
 void wpisywanie(vector<int> &Tab, int n);
 void wypisywanie(vector<int> &Tab);
+void wypisz(vector<int> &Tab);
 
 int main()
 {
@@ -18,6 +19,7 @@ int main()
     cin >> n;
     srand(time(NULL));
     wpisywanie(Tab, n);
+    wypisz(Tab);
     wypisywanie(Tab);
 }
 
@@ -32,22 +34,29 @@ void wpisywanie(vector<int> &Tab, int n)
         }
         else
         {
-            
+            Tab.push_back(x);
         }
     }
 }
 
 void wypisywanie(vector<int> &Tab)
 {
-    for (int i = 0; i < Tab.size(); i++){
-        if (szukanie_lidera(Tab) != -1)
+    int lider = szukanie_lidera(Tab);
+        if (lider != -1)
         {
             cout << "Liderem jest " << szukanie_lidera(Tab);
         }
-        else
+        else if (lider == -1)
         {
             cout << "Nie ma lidera w zbiorze" << endl;
         }
+}
+void wypisz(vector<int> &Tab)
+{
+    int i = 0;
+    for (i = 0; i < Tab.size(); i++)
+    {
+        cout << Tab[i] << endl;
     }
 }
 
@@ -82,7 +91,7 @@ int szukanie_lidera(vector<int> &Tab)
             ile++;
         }
     }
-    if (ile > Tab.size() / 2)
+    if (ile > Tab.size()/2)
     {
         return kandydat;
     }
