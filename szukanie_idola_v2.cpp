@@ -6,97 +6,86 @@
 
 using namespace std;
 
-int szukanie_idola(vector<int> &Tab);
-void wpisywanie(vector<int> &Tab, int n);
-void wypisywanie(vector<int> &Tab);
-void wypisz(vector<int> &Tab);
+int szukanie_idola(vector<int> &Tab, vector<vector<bool>> &lines);
+void wpisywanie(vector<int> &Tab, vector<vector<bool>> &lines, int n);
+void wypisywanie(vector<int> &Tab, vector<vector<bool>> &lines);
+void wypisz(vector<int> &Tab, vector<vector<bool>> &lines);
 
 int main()
 {
     vector<int> Tab;
+    vector<vector<bool>> lines;
     int n;
     cout << "Podaj ilość elementów:";
     cin >> n;
     srand(time(NULL));
-    wpisywanie(Tab, n);
-    wypisz(Tab);
-    wypisywanie(Tab);
+    wpisywanie(Tab, lines, n);
+    wypisz(Tab, lines);
+    //wypisywanie(Tab, lines);
 }
 
-void wpisywanie(vector<int> &Tab, int n)
+void wpisywanie(vector<int> &Tab, vector<vector<bool>> &lines, int n)
 {
-    int x = rand() % 100;
-    for (int i = 0; i < n; i++)
+    int i, j, idol;
+    for (i = 0; i < n; i++)
     {
-        if (rand() % 2 == 0)
+        for (j = 0; j < n; j++)
         {
-            Tab.push_back(rand() % 100);
-        }
-        else
-        {
-            Tab.push_back(x);
+            Tab.push_back(rand() % 2);
+            lines[i][j] = rand() % 2;
         }
     }
-}
-
-void wypisywanie(vector<int> &Tab)
-{
-    int lider = szukanie_idola(Tab);
-        if (lider != -1)
-        {
-            cout << "Idolem jest " << szukanie_idola(Tab);
-        }
-        else if (lider == -1)
-        {
-            cout << "Nie ma idola w zbiorze" << endl;
-        }
-}
-void wypisz(vector<int> &Tab)
-{
-    int i = 0;
-    for (i = 0; i < Tab.size(); i++)
+    if (rand() % 2 == 1)
     {
-        cout << Tab[i] << endl;
+        idol = rand() % n;
+        for (i = 0; i < n; i++)
+        {
+            lines[i][idol] = true;
+        }
+        for (j = 0; j < n; j++)
+        {
+            lines[idol][i] = false;
+        }
     }
 }
 
-int szukanie_idola(vector<int> &Tab)
+/* void wypisywanie(vector<int> &Tab, vector<vector<bool>> &lines)
 {
-    int i, kandydat, ile = 0;
-    for (i = 0; i < Tab.size(); i++)
+    int idol = szukanie_idola(Tab, lines);
+    if (idol != -1)
     {
-        if (ile == 0)
-        {
-            ile = 1;
-            kandydat = Tab[i];
-        }
-        else if (Tab[i] == kandydat)
-        {
-            ile++;
-        }
-        else
-        {
-            ile--;
-        }
+        cout << "Idolem jest " << szukanie_idola(Tab);
     }
-    if (ile == 0)
+    else if (idol == -1)
     {
-        return -1;
+        cout << "Nie ma idola w zbiorze" << endl;
     }
-    ile = 0;
+} */
+void wypisz(vector<int> &Tab, vector<vector<bool>> &lines)
+{
     for (int i = 0; i < Tab.size(); i++)
     {
-        if (Tab[i] == kandydat)
+        for (int j = 0; j < lines.size(); j++)
         {
-            ile++;
+            if (i != j)
+            {
+                cout << lines[i][j] << " ";
+            }
+            else
+            {
+                cout << "  ";
+            }
+            cout << endl;
         }
     }
-    if (ile > Tab.size()/2)
-    {
-        return kandydat;
-    }
-    else
-    {
-        return -1;
-    }
 }
+
+/* int szukanie_idola(vector<int> &Tab, vector<vector<bool>> &lines)
+{
+    int i, kandydat = 0;
+    bool j_kandydat = false;
+    while (kandydat < Tab.size() && !j_kandydat)
+    {
+        i = 0;
+    }
+} */
